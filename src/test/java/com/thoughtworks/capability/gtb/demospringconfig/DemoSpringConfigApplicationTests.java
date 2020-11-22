@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.web.servlet.MockMvc;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -24,7 +25,8 @@ class DemoSpringConfigApplicationTests {
 				.andExpect(status().isOk());
 	}
 
-	@SpringBootTest(properties = {"levelNumber=2"})
+	@SpringBootTest
+	@TestPropertySource(locations = "classpath:levelNumber2.properties")
 	@AutoConfigureMockMvc
 	@Nested
 	class LevelNumber2{
@@ -39,7 +41,8 @@ class DemoSpringConfigApplicationTests {
 		}
 	}
 
-	@SpringBootTest(properties = {"levelNumber=0"})
+	@SpringBootTest
+	@TestPropertySource(locations = "classpath:levelNumber0.properties")
 	@AutoConfigureMockMvc
 	@Nested
 	class LevelNumber0{
